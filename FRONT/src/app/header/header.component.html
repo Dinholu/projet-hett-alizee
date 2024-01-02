@@ -1,11 +1,21 @@
-<header class="bg-primary text-white text-center py-3 " style="height: 15vh;">
-  <h1>TP06 - Subject Behaviour /  BackEnd</h1>
-      <ul class="navbar-nav flex-row justify-content-center gap-5">
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Mon E-Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/produits']">Catalogue</a>
+          <a class="nav-link" href="/login">Connexion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/panier']">Panier {{ nb$ | async }}</a>
+          <a class="nav-link" href="/signup">Inscription</a>
         </li>
       </ul>
+    </div>
+  </nav>
 </header>
+
+

@@ -12,8 +12,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { PanierState } from './shared/states/panier-state';
 import { ApiHttpInterceptor } from './http-interceptor';
-import { CatalogueService } from './catalogue.service';
+import { CatalogueService } from './services/catalogue.service';
 import { LoginComponent } from './login/login.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { EnregistrerComponent } from './enregistrer/enregistrer.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { LoginComponent } from './login/login.component';
     PanierComponent,
     ProduitsComponent,
     // FilterPipe,
-    LoginComponent
+    LoginComponent,
+    AccueilComponent,
+    EnregistrerComponent
 
   ],
   imports: [

@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
 import { fromEvent, Observable, of, BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, catchError, startWith } from 'rxjs/operators';
-import { CatalogueService } from '../catalogue.service';
+import { CatalogueService } from '../services/catalogue.service';
 import { Produit } from '../shared/models/produit';
 import { AddProduit } from '../shared/actions/produits-actions';
 import { Store } from '@ngxs/store';

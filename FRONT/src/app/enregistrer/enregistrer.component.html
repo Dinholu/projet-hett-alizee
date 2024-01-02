@@ -1,0 +1,15 @@
+<form (ngSubmit)="signup()">
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="formData.email" required>
+  </div>
+  <div>
+    <label for="password">Mot de passe:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="formData.password" required>
+  </div>
+  <div>
+    <label for="confirmPassword">Confirmer mot de passe:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="formData.confirmPassword" required>
+  </div>
+  <button type="submit">S'inscrire</button>
+</form>
