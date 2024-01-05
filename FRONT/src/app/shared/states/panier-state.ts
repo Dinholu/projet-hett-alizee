@@ -36,7 +36,7 @@ export class PanierState {
   @Action(RemoveProduit)
   remove({ getState, patchState }: StateContext<PanierStateModel>, { payload }: RemoveProduit) {
     patchState({
-      produitsPanier: getState().produitsPanier.filter(a => a.ref !== payload.ref)
+      produitsPanier: getState().produitsPanier.filter(a => a.nom !== payload.nom)
     });
   }
   @Action(RemoveAllProduit)

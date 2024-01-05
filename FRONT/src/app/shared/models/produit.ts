@@ -1,13 +1,16 @@
 export class Produit {
-  ref: string;
-  designation: string;
+  nom: string;
+  img: string;
+  description: string;
   prix: number;
-  qte: number;
+  categorie_id: number;
+
 
   constructor() {
-    this.ref = '';
-    this.designation = '';
+    this.nom = '';
+    this.img = '';
+    this.description = '';
     this.prix = 0;
-    this.qte = 0;
+    this.categorie_id = 0;
   }
 }

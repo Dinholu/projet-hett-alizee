@@ -11,19 +11,19 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Référence</th>
-            <th>Désignation</th>
+            <th>Nom</th>
+            <th>Description</th>
             <th>Prix</th>
-            <th>Quantité</th>
+            <th>Categorie</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let p of produits">
-            <td>{{ p.ref }}</td>
-            <td>{{ p.designation }}</td>
-            <td>{{ p.prix }}</td>
-            <td>{{ p.qte }}</td>
-            <td><button (click)="addProduit(p)" class="btn btn-primary" [disabled]="p.qte == 0">Ajouter au panier</button></td>
+            <td>{{ p.nom }}</td>
+            <td>{{ p.img }}</td>
+            <td>{{ p.description }}</td>
+            <td>{{ p.categorie_id }}</td>
+            <td><button (click)="addProduit(p)" class="btn btn-primary">Ajouter au panier</button></td>
           </tr>
         </tbody>
       </table>
