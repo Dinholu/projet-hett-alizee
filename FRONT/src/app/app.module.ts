@@ -11,11 +11,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { FilterPipe } from './filter.pipe';
 import { NgxsModule } from '@ngxs/store';
 import { PanierState } from './shared/states/panier-state';
+import { ClientState } from './shared/states/client-state';
 import { ApiHttpInterceptor } from './http-interceptor';
 import { CatalogueService } from './services/catalogue.service';
 import { LoginComponent } from './login/login.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { EnregistrerComponent } from './enregistrer/enregistrer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { EnregistrerComponent } from './enregistrer/enregistrer.component';
     FooterComponent,
     PanierComponent,
     ProduitsComponent,
+
     // FilterPipe,
     LoginComponent,
     AccueilComponent,
@@ -32,11 +35,12 @@ import { EnregistrerComponent } from './enregistrer/enregistrer.component';
 
   ],
   imports: [
-    NgxsModule.forRoot([PanierState]),
+    NgxsModule.forRoot([PanierState, ClientState]),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },

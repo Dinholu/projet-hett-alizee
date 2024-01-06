@@ -1,24 +1,35 @@
-<header>
-  <nav class="bg-blue-500">
-    <a class="navbar-brand" href="#">Mon E-Shop</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login">Connexion</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/signup">Inscription</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" routerLink="/panier">panier</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<header data-aos="flip-up" data-aos-duration="5000" class="bg-primary mx-4 mt-4 rounded-2xl flex justify-between h-[25rem] text-white relative">
+  <div class="flex-1">
+    <a class="btn btn-ghost text-xl m-2" routerLink="/">Mon E-Shop</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-3">
+      <ng-container *ngIf="(client$ | async) as clientData">
+        <ng-container *ngIf="!clientData || !clientData.trim(); else showWelcome">
+          <li class="px-3">
+            <a class="nav-link" routerLink="/login">Connexion</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/signup">Inscription</a>
+          </li>
+        </ng-container>
+        <ng-template #showWelcome>
+          <li class="px-3">
+             <a class="nav-link" [routerLink]="['/panier']">Panier {{ nb$ | async }}</a>
+          </li>
+
+          <li class="px-3">
+          <details>
+            <summary class="w-full">
+              {{ clientData }}
+            </summary>
+            <ul class="p-2 bg-base-100 rounded-t-none text-primary ">
+              <li class="w-full" (click)="logout()"><a>Se deconnecter</a></li>
+            </ul>
+        </details>
+          </li>
+        </ng-template>
+      </ng-container>
+    </ul>
+  </div>
 </header>
-
-
