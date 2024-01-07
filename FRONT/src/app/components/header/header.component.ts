@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { PanierState } from '../shared/states/panier-state';
-import { ClientState } from '../shared/states/client-state';
-import { AuthService } from '../services/auth.service';
+import { PanierState } from '../../shared/states/panier-state';
+import { ClientState } from '../../shared/states/client-state';
+import { AuthService } from '../../services/auth.service';
 import { refresh } from 'aos';
 
 @Component({

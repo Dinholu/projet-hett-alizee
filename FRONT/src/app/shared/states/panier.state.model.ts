@@ -1,4 +1,4 @@
-import { Produit } from '../models/produit';
+import { Panier } from '../models/panier';
 export class PanierStateModel {
-  produitsPanier: Produit[] = [];
+  produitsPanier: Panier[] = [];
 }

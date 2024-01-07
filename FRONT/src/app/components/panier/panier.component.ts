@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { PanierState } from '../shared/states/panier-state';
+import { PanierState } from '../../shared/states/panier-state';
 import { Observable } from 'rxjs';
-import { Produit } from '../shared/models/produit';
-import { RemoveAllProduit, RemoveProduit } from '../shared/actions/produits-actions';
+import { Produit } from '../../shared/models/produit';
+import { RemoveAllProduit, RemoveProduit } from '../../shared/actions/produits-actions';
+import { Panier } from '../../shared/models/panier';
 
 @Component({
   selector: 'app-panier',
@@ -12,8 +13,7 @@ import { RemoveAllProduit, RemoveProduit } from '../shared/actions/produits-acti
 })
 export class PanierComponent implements OnInit {
   constructor(private store: Store) { }
-
-  @Select(PanierState.getProduitsPanier) produitsPanier$?: Observable<Produit[]>;
+  @Select(PanierState.getProduitsPanier) produitsPanier$?: Observable<Panier[]>;
 
   delete(produit: Produit) {
     this.store.dispatch(new RemoveProduit(produit));

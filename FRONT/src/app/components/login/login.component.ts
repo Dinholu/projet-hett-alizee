@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { ClientState } from '../shared/states/client-state';
-import { CatalogueService } from '../services/catalogue.service';
+import { ClientState } from '../../shared/states/client-state';
+import { CatalogueService } from '../../services/catalogue.service';
 import { Observable } from 'rxjs';
-import { Produit } from '../shared/models/produit';
+import { Produit } from '../../shared/models/produit';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { AddClient } from '../shared/actions/clients-actions';
+import { AuthService } from '../../services/auth.service';
+import { AddClient } from '../../shared/actions/clients-actions';
 import { Store } from '@ngxs/store';
 
 @Component({

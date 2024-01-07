@@ -5,7 +5,7 @@ import {
   State,
   StateContext,
 } from '@ngxs/store';
-import { Produit } from '../models/produit';
+import { Panier } from '../models/panier';
 import { AddProduit, RemoveAllProduit, RemoveProduit } from '../actions/produits-actions';
 import { PanierStateModel } from './panier.state.model';
 @State<PanierStateModel>({
@@ -26,17 +26,34 @@ export class PanierState {
   }
   @Action(AddProduit)
   add({ getState, patchState }: StateContext<PanierStateModel>, { payload }: AddProduit) {
-    console.log(payload);
-
     const state = getState();
-    patchState({
-      produitsPanier: [...state.produitsPanier, payload]
-    });
+    const existingItemIndex = state.produitsPanier.findIndex(item => item.produit.nom === payload.nom);
+
+    if (existingItemIndex !== -1) {
+      const updatedProduitsPanier = [...state.produitsPanier];
+      updatedProduitsPanier[existingItemIndex].quantite += 1;
+      patchState({
+        produitsPanier: updatedProduitsPanier,
+      });
+    } else {
+      const newPanierItem = new Panier(payload);
+      patchState({
+        produitsPanier: [...state.produitsPanier, newPanierItem],
+      });
+    }
   }
   @Action(RemoveProduit)
   remove({ getState, patchState }: StateContext<PanierStateModel>, { payload }: RemoveProduit) {
+    const state = getState();
+    const updatedPanier = state.produitsPanier.map(item => {
+      if (item.produit.nom === payload.nom) {
+        item.quantite = Math.max(0, item.quantite - 1);
+      }
+      return item;
+    }).filter(item => item.quantite > 0);
+
     patchState({
-      produitsPanier: getState().produitsPanier.filter(a => a.nom !== payload.nom)
+      produitsPanier: updatedPanier,
     });
   }
   @Action(RemoveAllProduit)

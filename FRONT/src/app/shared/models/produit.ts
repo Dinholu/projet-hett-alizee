@@ -1,9 +1,11 @@
+import { Categorie } from './categorie';
+
 export class Produit {
   nom: string;
   img: string;
   description: string;
   prix: number;
-  categorie_id: number;
+  categorie: string;
 
 
   constructor() {
@@ -11,6 +13,6 @@ export class Produit {
     this.img = '';
     this.description = '';
     this.prix = 0;
-    this.categorie_id = 0;
+    this.categorie = '';
   }
 }

@@ -11,11 +11,13 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of produitsPanier$ | async">
-        <td>{{ item.nom }}</td>
+        <td>{{ item.produit.nom }}</td>
+        <td>{{item.quantite}}</td>
+        <!-- <td>{{ item.nom }}</td>
         <td>{{ item.description }}</td>
-        <td>{{ item.prix }}</td>
+        <td>{{ item.prix }}</td> -->
         <td>
-          <button class="btn btn-danger btn-sm" (click)="delete(item)">Retirer</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(item.produit)">Retirer</button>
         </td>
       </tr>
     </tbody>

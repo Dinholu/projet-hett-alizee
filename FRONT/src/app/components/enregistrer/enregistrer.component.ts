@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
+import { Store } from '@ngxs/store';
+import { AddClient } from '../../shared/actions/clients-actions';
+import { Router } from '@angular/router';
 import {
   FormGroup, FormBuilder, Validators
 } from '@angular/forms';
-import { Client } from '../shared/models/client';
+import { Client } from '../../shared/models/client';
 @Component({
   selector: 'app-enregistrer',
   templateUrl: './enregistrer.component.html',
   styleUrls: ['./enregistrer.component.css']
 })
+
 export class EnregistrerComponent implements OnInit {
 
   inscriptionForm: FormGroup = new FormGroup({});
   error: string = '';
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+  success: string = '';
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private store: Store) {
     this.inscriptionForm = this.formBuilder.group({
       email: ['alizeehett@hotmail.fr', [Validators.required, Validators.email]],
       nom: ['hett', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
@@ -50,17 +55,29 @@ export class EnregistrerComponent implements OnInit {
         (data) => {
           console.log('Données reçues : ', data);
           this.error = '';
+          this.success = 'Inscription réussie, vous allez etre redirigé vers notre catalogue dans 3 secondes';
+          this.store.dispatch(new AddClient(data));
+
+
+          setTimeout(() => {
+            this.router.navigate(['/produits']);
+          }, 1000);
         },
         (error) => {
-          console.log('Erreur reçue : ', error);
-          this.error = error.error.message;
+          console.log('Erreur reçue : ', error.error);
+          this.error = 'Une erreur est survenue lors de l\'inscription';
         }
       );
     } else {
       this.error = 'Veuillez remplir correctement tous les champs du formulaire';
     }
   }
-
+  validateField(field: string) {
+    const control = this.inscriptionForm.get(field);
+    if (control) {
+      control.markAsTouched();
+    }
+  }
 
   ngOnInit() {
 

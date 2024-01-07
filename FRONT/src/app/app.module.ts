@@ -3,10 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { PanierComponent } from './panier/panier.component';
-import { ProduitsComponent } from './produits/produits.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PanierComponent } from './components/panier/panier.component';
+import { ProduitsComponent } from './components/produits/produits.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { FilterPipe } from './filter.pipe';
 import { NgxsModule } from '@ngxs/store';
@@ -14,9 +14,9 @@ import { PanierState } from './shared/states/panier-state';
 import { ClientState } from './shared/states/client-state';
 import { ApiHttpInterceptor } from './http-interceptor';
 import { CatalogueService } from './services/catalogue.service';
-import { LoginComponent } from './login/login.component';
-import { AccueilComponent } from './accueil/accueil.component';
-import { EnregistrerComponent } from './enregistrer/enregistrer.component';
+import { LoginComponent } from './components/login/login.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
+import { EnregistrerComponent } from './components/enregistrer/enregistrer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
