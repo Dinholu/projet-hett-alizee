@@ -21,6 +21,10 @@ module.exports = {
           '0%': { transform: 'translateY(-50px)', },
           '100%': { transform: 'translateY(0px)' },
         },
+        up: {
+          '0%': { transform: 'translateY(50px)', },
+          '100%': { transform: 'translateY(0px)' },
+        },
         openFromMiddle: {
           '0%': {
             height: '0',
@@ -38,6 +42,7 @@ module.exports = {
         'right': 'right 2s',
         'left': 'left 2s',
         'down': 'down 2s',
+        'up': 'up 2s',
         'openFromMiddle': 'openFromMiddle 1s',
       },
     },

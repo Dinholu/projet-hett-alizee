@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { PanierState } from '../../shared/states/panier-state';
 import { ClientState } from '../../shared/states/client-state';
 import { AuthService } from '../../services/auth.service';
-import { refresh } from 'aos';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,41 @@ import { refresh } from 'aos';
   styleUrls: ['./header.component.css'],
   providers: [AuthService],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   fullname: string = '';
-  constructor(private authService: AuthService) { }
+  currentRoute: string = '';
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
   @Select(ClientState.getFullName) client$?: Observable<string>;
   @Select(PanierState.getNbProduitsPanier) nb$?: Observable<number>;
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updateHeaderTitle();
+      }
+    });
+  }
+  private updateHeaderTitle() {
+    const currentRoute = this.router.url;
+
+    switch (currentRoute) {
+      case '/signup':
+        this.currentRoute = 'Inscription';
+        break;
+      case '/login':
+        this.currentRoute = 'Connexion';
+        break;
+      case '/produits':
+        this.currentRoute = 'Catalogue';
+        break;
+      case '/panier':
+        this.currentRoute = 'Panier';
+        break;
+      default:
+        this.currentRoute = 'Accueil';
+    }
+  }
+
 
   logout() {
     this.authService.logout();

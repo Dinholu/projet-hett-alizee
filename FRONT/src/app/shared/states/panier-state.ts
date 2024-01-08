@@ -24,6 +24,10 @@ export class PanierState {
   static getNbProduitsPanier(state: PanierStateModel) {
     return state.produitsPanier.length;
   }
+  @Selector()
+  static getTotalePanier(state: PanierStateModel) {
+    return state.produitsPanier.reduce((acc, item) => acc + item.produit.prix * item.quantite, 0);
+  }
   @Action(AddProduit)
   add({ getState, patchState }: StateContext<PanierStateModel>, { payload }: AddProduit) {
     const state = getState();

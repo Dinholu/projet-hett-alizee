@@ -1,29 +1,30 @@
-<main class="top-[3rem] overflow-hidden absolute left-4 right-4 animate-openFromMiddle text-center">
-<div class="w-full text-center right-4 left-4">
-    <h2 class="text-4xl text-white mb-[4rem]">Catalogue</h2>
+<main class="top-[9rem] overflow-hidden absolute left-4 right-4 animate-openFromMiddle text-center">
+  <div class="w-full text-center right-4 left-4">
     <div class="w-[80%] m-auto">
-      <input #rechercheInput type="text"  id="recherche" placeholder="Entrer un mot-clé" (input)="onSearchInputChange(rechercheInput.value)" class="w-full h-[3rem] rounded-3xl px-4">
+      <input #rechercheInput type="text"  id="recherche" placeholder="Entrer un mot-clé" (input)="onSearchInputChange(rechercheInput.value)" class="w-full h-[3rem] rounded-2xl px-4">
     </div>
   </div>
-  <div class=" mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-[4rem] w-full ">
-  <div data-aos="fade-up" *ngFor="let p of produits$ | async" >
-    <div class="py-0 rounded-3xl shadow-lg bg-white bg-opacity-40 flex flex-col justify-between px-0">
-    <img [src]="p.img" [alt]="p.nom" class="rounded-t-3xl h-[15rem] w-wull object-cover my-0">
-    <div class="mt-3">
-      <h3 class="text-lg font-semibold">{{ p.nom }} <span class="text-lg font-semibold text-primary">{{ p.prix }} €</span></h3>
-    </div>
-    <p class="text-base mb-2">{{ p.description }}</p>
-    <div class="flex justify-between px-8 mb-3">
-      <p class="text-sm text-gray-500 border rounded-lg px-3 my-auto py-3">{{ p.categorie }}</p>
-      <button (click)="addProduit(p)" class="btn btn-primary">Ajouter au panier</button>
+  <div class=" mt-4 min-h-[15rem] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-[4rem] w-full">
+    <div  *ngFor="let p of produits$ | async" class="h-full">
+      <div class="py-0 rounded-3xl shadow-lg bg-white bg-opacity-40 flex flex-col justify-between px-0 grow h-full animate-up">
+        <img [src]="p.img" [alt]="p.nom" class="rounded-t-3xl h-[15rem] w-full object-cover my-0 ">
+        <div class="mt-3">
+          <h3 class="text-lg font-semibold">{{ p.nom }} <span class="text-lg font-semibold text-primary">{{ p.prix }} €</span></h3>
+        </div>
+        <p class="text-base mb-2">{{ p.description }}</p>
+        <div class="flex justify-between px-8 mb-3">
+          <p class="text-sm text-gray-500 border rounded-lg px-3 my-auto py-3">{{ p.categorie }}</p>
+          <button (click)="addProduit(p)" class="btn btn-primary">Ajouter au panier</button>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-</div>
-<div *ngIf="produits$ | async" class="bg-white h-[3rem] w-full">
+  <div *ngIf="(produits$ | async)?.length;" class=" h-[3rem] mb-3 w-full">
   <app-footer *ngIf="produits$ |async" ></app-footer>
-</div>
-
+  </div>
+  <div *ngIf="message" class="fixed top-6 w-full text-center mx-auto ">
+    <p role="alert" class="alert alert-success z-100 w-[25rem] text-center mx-auto"><span>{{ message }}</span></p>
+  </div>
 </main>
 
 

@@ -1,5 +1,5 @@
-import { Component, OnInit, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
-import { fromEvent, Observable, of, BehaviorSubject } from 'rxjs';
+import { Component, OnInit, ElementRef, ViewChild, Output } from '@angular/core';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, catchError, startWith } from 'rxjs/operators';
 import { CatalogueService } from '../../services/catalogue.service';
 import { Produit } from '../../shared/models/produit';
@@ -14,6 +14,7 @@ import { Store } from '@ngxs/store';
 
 export class ProduitsComponent implements OnInit {
   produits$: Observable<Produit[]>;
+  message = '';
   @ViewChild('rechercheInput', { static: true }) rechercheInput!: ElementRef;
   @Output() searchEvent = new BehaviorSubject<string>('');
 
@@ -44,6 +45,10 @@ export class ProduitsComponent implements OnInit {
   addProduit(produit: Produit) {
     console.log(produit);
     this.store.dispatch(new AddProduit(produit));
+    this.message = produit.nom + ' ajouté au panier !';
+    setTimeout(() => {
+      this.message = '';
+    }, 2000);
   }
 
 }

@@ -58,7 +58,6 @@ export class EnregistrerComponent implements OnInit {
           this.success = 'Inscription réussie, vous allez etre redirigé vers notre catalogue dans 3 secondes';
           this.store.dispatch(new AddClient(data));
 
-
           setTimeout(() => {
             this.router.navigate(['/produits']);
           }, 1000);

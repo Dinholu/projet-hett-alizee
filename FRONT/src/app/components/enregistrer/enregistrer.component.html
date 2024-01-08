@@ -1,7 +1,6 @@
-<div class="top-[20%] overflow-hidden absolute left-4 right-4 animate-openFromMiddle text-center">
-  <div class="bg-primary rounded-b-3xl pb-12">
-    <div class="w-2/3 px-[4rem] m-auto flex flex-col justify-center bg-white bg-opacity-50 backdrop-blur-lg rounded-2xl p-5 ">
-      <h3 class="p-4 text-4xl font-bold text-white">Inscription</h3>
+<div class="top-[22%] overflow-hidden absolute left-4 right-4 animate-openFromMiddle text-center">
+  <div class="bg-primary rounded-b-3xl pb-[4rem]">
+    <div class="w-1/2 px-[4rem] m-auto flex flex-col justify-center bg-white bg-opacity-50 backdrop-blur-lg rounded-3xl pt-[5rem] ">
       <form [formGroup]="inscriptionForm" (ngSubmit)="signup()" class="w-full" >
         <div class="flex w-full justify-between gap-3 ">
           <div class="flex flex-col wrap grow">
@@ -61,10 +60,10 @@
             <input type="password" id="confirmPassword" formControlName="confirmPassword" class="border p-2 rounded-md w-full" required>
           </div>
         </div>
-        <div *ngIf="error" class=" opacity-75  mt-4 text-center">
+        <div *ngIf="error" class="mt-4 text-center">
           <p  role="alert" class="alert alert-error z-100 mx-auto">{{ error }}</p>
         </div>
-        <div *ngIf="success" class="text-center opacity-75 mt-4">
+        <div *ngIf="success" class="text-center mt-4">
           <p  role="alert" class="alert alert-success z-100 mx-auto "><span>{{ success }}</span></p>
         </div>
         <div class="text-center my-2 p-3">
@@ -72,9 +71,6 @@
         </div>
       </form>
     </div>
-
   </div>
-
-  <div  class="bg-white h-[1rem]"></div>
   <app-footer></app-footer>
 </div>

@@ -1,8 +1,11 @@
 <header data-aos="flip-up" data-aos-duration="5000" class="bg-primary mx-4 mt-4 rounded-2xl flex justify-between h-[25rem] text-white relative">
-  <div class="flex-1">
+  <div class="basis-[30rem]">
     <a class="btn btn-ghost text-xl m-2" routerLink="/">Mon E-Shop</a>
   </div>
-  <div class="flex-none">
+  <div class="basis-basis-[20rem] text-center">
+    <h1 class="text-4xl text-white mb-[4rem] my-auto mt-4">{{currentRoute}}</h1>
+  </div>
+  <div class="flex-none basis-[30rem] text-right">
     <ul class="menu menu-horizontal px-3">
       <ng-container *ngIf="(client$ | async) as clientData">
         <ng-container *ngIf="!clientData || !clientData.trim(); else showWelcome">
@@ -23,8 +26,8 @@
             <summary class="w-full">
               {{ clientData }}
             </summary>
-            <ul class="p-2 bg-base-100 rounded-t-none text-primary ">
-              <li class="w-full" (click)="logout()"><a>Se deconnecter</a></li>
+            <ul class="p-2 bg-base-100 rounded-t-none text-primary z-100">
+              <li class="w-full z-100" (click)="logout()"><a>Se deconnecter</a></li>
             </ul>
         </details>
           </li>
