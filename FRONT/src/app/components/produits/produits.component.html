@@ -1,9 +1,14 @@
 <main class="top-[9rem] overflow-hidden absolute left-4 right-4 animate-openFromMiddle text-center">
-  <div class="w-full text-center right-4 left-4">
-    <div class="w-[80%] m-auto">
-      <input #rechercheInput type="text"  id="recherche" placeholder="Entrer un mot-clé" (input)="onSearchInputChange(rechercheInput.value)" class="w-full h-[3rem] rounded-2xl px-4">
-    </div>
+<div class="w-full text-center right-4 left-4 relative">
+  <div class="w-[80%] m-auto relative">
+    <input #rechercheInput type="text" id="recherche" placeholder="Entrer un mot-clé" (input)="onSearchInputChange(rechercheInput.value)" class="w-full h-[3rem] rounded-2xl px-4">
+    <select #categorieInput (input)="onCategoryInputChange(categorieInput.value)" class="absolute top-0 right-0 h-[3rem] appearance-none border-l rounded-r-2xl px-4 bg-transparent cursor-pointer">
+      <option value="">Tout</option>
+      <option *ngFor="let category of categories$ | async" [value]="category.id">{{ category.label }}</option>
+    </select>
   </div>
+</div>
+
   <div class=" mt-4 min-h-[15rem] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-[4rem] w-full">
     <div  *ngFor="let p of produits$ | async" class="h-full">
       <div class="py-0 rounded-3xl shadow-lg bg-white bg-opacity-40 flex flex-col justify-between px-0 grow h-full animate-up">

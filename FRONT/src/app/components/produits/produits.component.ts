@@ -5,6 +5,7 @@ import { CatalogueService } from '../../services/catalogue.service';
 import { Produit } from '../../shared/models/produit';
 import { AddProduit } from '../../shared/actions/produits-actions';
 import { Store } from '@ngxs/store';
+import { Categorie } from 'src/app/shared/models/categorie';
 @Component({
   selector: 'app-produits',
   templateUrl: './produits.component.html',
@@ -14,36 +15,43 @@ import { Store } from '@ngxs/store';
 
 export class ProduitsComponent implements OnInit {
   produits$: Observable<Produit[]>;
+  categories$: Observable<Categorie[]>;
   message = '';
   @ViewChild('rechercheInput', { static: true }) rechercheInput!: ElementRef;
-  @Output() searchEvent = new BehaviorSubject<string>('');
+  @ViewChild('categorieInput', { static: true }) categorieInput!: ElementRef;
+  @Output() searchEvent = new BehaviorSubject<{ term: string, category: string }>({ term: '', category: '' });
 
   constructor(private catalogueService: CatalogueService, private store: Store) {
+    this.categories$ = this.catalogueService.getCategories();
     this.produits$ = this.catalogueService.getProduits();
   }
   ngOnInit(): void {
     this.produits$ = this.searchEvent.pipe(
-      startWith(''),
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((searchTerm: string) =>
-        searchTerm.trim() === ''
-          ? this.catalogueService.getProduits()
-          : this.catalogueService.getSearchProduits(searchTerm).pipe(
-            catchError(() => of([] as Produit[])),
-            startWith([] as Produit[])
-          )
-      )
+      switchMap(({ term, category }) => {
+        if (term === '' && category === '') {
+          return this.catalogueService.getProduits();
+        }
+        return this.catalogueService.getSearchProduits(term, category);
+      }),
+      catchError(() => of([] as Produit[])),
+      startWith([] as Produit[])
     );
 
-    this.searchEvent.next('');
+    this.searchEvent.next({ term: '', category: '' });
+  }
+  onSearchInputChange(searchTerm: string): void {
+    const category = this.categorieInput.nativeElement.value;
+    this.searchEvent.next({ term: searchTerm, category: category });
   }
 
-  onSearchInputChange(searchTerm: string): void {
-    this.searchEvent.next(searchTerm);
+  onCategoryInputChange(category: string): void {
+    const searchTerm = this.rechercheInput.nativeElement.value;
+    this.searchEvent.next({ term: searchTerm, category: category });
   }
+
   addProduit(produit: Produit) {
-    console.log(produit);
     this.store.dispatch(new AddProduit(produit));
     this.message = produit.nom + ' ajouté au panier !';
     setTimeout(() => {

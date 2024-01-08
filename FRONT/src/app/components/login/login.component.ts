@@ -31,9 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   connexion() {
-    console.log(this.name);
-    console.log(this.login);
-
     this.AuthService.loginClient(this.login, this.password).subscribe(
       (data) => {
         this.cnx = true;
