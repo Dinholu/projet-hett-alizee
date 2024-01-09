@@ -1,7 +1,8 @@
 <div class="top-[9rem] overflow-hidden absolute left-4 right-4 animate-openFromMiddle text-center">
   <div class="w-full text-center right-4 left-4">
     <div class="w-2/3 px-[4rem] m-auto flex flex-col justify-center bg-white bg-opacity-50 backdrop-blur-lg shadow-lg rounded-2xl p-5 ">
-    <table class="table" *ngIf="(produitsPanier$ | async)?.length; else panierVide">
+
+      <table class="table" *ngIf="(produitsPanier$ | async)?.length; else panierVide">
       <thead>
         <tr>
             <th></th>
@@ -37,10 +38,14 @@
     </ng-template>
     </div>
   </div>
+
+</div>
+<div *ngIf="message" class="fixed top-6 w-full text-center mx-auto ">
+  <p role="alert" class="alert alert-success z-100 w-[25rem] text-center mx-auto"><span>{{ message }}</span></p>
+</div>
   <div class="fixed bottom-4 left-4 flex hover:scale-110 transition-all cursor-pointer" (click)="goBack()">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary " fill="none" viewBox="0 0 24 24" stroke="currentColor" >
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
     </svg>
     <p>Retour au catalogue</p>
   </div>
-</div>

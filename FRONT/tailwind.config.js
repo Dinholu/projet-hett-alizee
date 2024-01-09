@@ -45,6 +45,7 @@ module.exports = {
         'down': 'down 2s',
         'up': 'up 2s',
         'openFromMiddle': 'openFromMiddle 1s',
+        'spin-slow': 'spin 3s linear infinite',
       },
     },
   },

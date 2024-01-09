@@ -43,6 +43,9 @@ export class HeaderComponent implements OnInit {
       case '/panier':
         this.currentRoute = 'Panier';
         break;
+      case '/commande':
+        this.currentRoute = 'Commandes';
+        break;
       default:
         this.currentRoute = 'Accueil';
     }

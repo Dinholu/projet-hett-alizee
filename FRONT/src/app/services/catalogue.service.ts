@@ -36,15 +36,8 @@ export class CatalogueService {
   }
 
   payAll(client: Client, panier: Panier[]): Observable<any> {
-    // let params = new HttpParams();
-    console.log("payAll")
-    console.log(client)
-    console.log(panier)
+    // console.log(client, panier)
     return this.http.post(environment.backendCatalogue + '/pay', { client: client, panier: panier });
-    // params = params.set('client', JSON.stringify(client)).set('panier', JSON.stringify(panier));
-
-    // const url = `${environment.backendCatalogue}/pay`;
-    // return this.http.get<Client>(url, { params: params });
   }
 }
 

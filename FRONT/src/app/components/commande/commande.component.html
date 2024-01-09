@@ -1,0 +1,38 @@
+<div class="top-[9rem] overflow-hidden absolute left-4 right-4 animate-openFromMiddle text-center">
+  <div class="w-full text-center right-4 left-4">
+    <div *ngIf="loading" class="text-6xl mt-[5rem] text-white">
+    <i class="fa-solid fa-gear animate-spin-slow"></i>
+    </div>
+    <div class="w-2/3 px-[4rem] m-auto flex flex-col justify-center bg-white bg-opacity-50 backdrop-blur-lg shadow-lg rounded-2xl p-5 ">
+      <table class="table" *ngIf="(commande$ | async)?.length && !loading">
+      <thead>
+        <tr>
+            <th></th>
+            <th>Nom</th>
+            <th class="w-[5rem]">Prix</th>
+            <th>Date</th>
+            <th>Quantité</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of commande$ | async">
+          <td><img [src]="item.img" [alt]="item.produit" class="rounded-full w-[3rem] h-[3rem] object-cover my-0"></td>
+          <td>{{ item.produit }}</td>
+          <td>{{ item.prix }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.quantite }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="!loading && !(commande$ | async)?.length">
+      <p>Vous n'avez pas fait de commande</p>
+    </div>
+    </div>
+  </div>
+</div>
+  <div class="fixed bottom-4 left-4 flex hover:scale-110 transition-all cursor-pointer" (click)="goBack()">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary " fill="none" viewBox="0 0 24 24" stroke="currentColor" >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    <p>Retour au catalogue</p>
+  </div>

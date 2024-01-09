@@ -26,7 +26,8 @@
             <summary class="w-full">
               {{ clientData }}
             </summary>
-            <ul class="p-2 bg-base-100 rounded-t-none text-primary z-100">
+            <ul class="p-2 bg-base-100 rounded-t-none text-primary mt-0 w-[90%]" style="margin-top: 0;">
+              <li class="w-full z-100" ><a routerLink="/commande">Vos commandes</a></li>
               <li class="w-full z-100" (click)="logout()"><a>Se deconnecter</a></li>
             </ul>
         </details>

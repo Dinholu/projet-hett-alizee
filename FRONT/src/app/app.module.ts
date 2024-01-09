@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { EnregistrerComponent } from './components/enregistrer/enregistrer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommandeComponent } from './components/commande/commande.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     // FilterPipe,
     LoginComponent,
     AccueilComponent,
-    EnregistrerComponent
+    EnregistrerComponent,
+    CommandeComponent
 
   ],
   imports: [

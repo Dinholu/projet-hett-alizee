@@ -6,6 +6,8 @@ import { EnregistrerComponent } from './components/enregistrer/enregistrer.compo
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { ProduitsComponent } from './components/produits/produits.component';
 import { LoginComponent } from './components/login/login.component';
+import { CommandeComponent } from './components/commande/commande.component';
+
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -15,7 +17,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
   { path: 'panier', component: PanierComponent, canActivate: [AuthGuard] },
   { path: 'produits', component: ProduitsComponent, canActivate: [AuthGuard] },
-  { path: 'test', component: ProduitsComponent },
+  { path: 'commande', component: CommandeComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'accueil' }
 ];
 

@@ -36,7 +36,6 @@ export class PanierComponent implements OnInit {
   }
 
   payAll() {
-    console.log("payAll")
     let client: Client = new Client();
     this.client$?.subscribe((data) => {
       client = data;
@@ -52,8 +51,8 @@ export class PanierComponent implements OnInit {
         console.log(data)
         setTimeout(() => {
           this.message = '';
-          this.router.navigate(['/produits']);
-        }, 1000);
+          this.router.navigate(['/commande']);
+        }, 3000);
       },
       (error) => {
         console.log(error);
