@@ -20,26 +20,22 @@ export class EnregistrerComponent implements OnInit {
   success: string = '';
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private store: Store) {
     this.inscriptionForm = this.formBuilder.group({
-      email: ['alizeehett@hotmail.fr', [Validators.required, Validators.email]],
-      nom: ['hett', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      prenom: ['alizee', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      adresse: ['rue des pieds', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      codepostal: ['67000', [Validators.required, Validators.minLength(1), Validators.maxLength(5), Validators.pattern('[0-9]*')]],
-      ville: ['brunst', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      sexe: ['f', Validators.required],
-      telephone: ['0618455656', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')]],
-      login: ['alizee', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      password: ['AhAAlizee12!', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{3,20}$/)]],
-      confirmPassword: ['AhAAlizee12!', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      nom: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
+      prenom: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
+      adresse: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
+      codepostal: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(5), Validators.pattern('[0-9]*')]],
+      ville: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
+      sexe: ['', Validators.required],
+      telephone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')]],
+      login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
+      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{3,20}$/)]],
+      confirmPassword: ['', Validators.required]
     });
   }
 
   signup() {
     if (this.inscriptionForm.valid) {
-      if (this.inscriptionForm.value.password !== this.inscriptionForm.value.confirmPassword) {
-        this.error = 'Les mots de passe ne correspondent pas';
-        return;
-      }
       const client: Client = new Client();
       client.nom = this.inscriptionForm.value.nom;
       client.prenom = this.inscriptionForm.value.prenom;
@@ -51,6 +47,7 @@ export class EnregistrerComponent implements OnInit {
       client.login = this.inscriptionForm.value.login;
       client.password = this.inscriptionForm.value.password;
       client.telephone = this.inscriptionForm.value.telephone;
+
       this.authService.signup(client).subscribe(
         (data) => {
           console.log('Données reçues : ', data);
@@ -64,7 +61,7 @@ export class EnregistrerComponent implements OnInit {
         },
         (error) => {
           console.log('Erreur reçue : ', error.error);
-          this.error = 'Une erreur est survenue lors de l\'inscription';
+          this.error = error.error;
         }
       );
     } else {

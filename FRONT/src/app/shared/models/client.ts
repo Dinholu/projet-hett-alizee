@@ -1,4 +1,5 @@
 export class Client {
+  id: number;
   nom: string;
   prenom: string;
   adresse: string;
@@ -11,6 +12,7 @@ export class Client {
   telephone: string;
 
   constructor() {
+    this.id = 0;
     this.nom = '';
     this.prenom = '';
     this.adresse = '';

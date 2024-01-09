@@ -16,13 +16,10 @@ import { Store } from '@ngxs/store';
 })
 export class LoginComponent implements OnInit {
 
-  name: string = '';
-  login: string = '';
-  password: string = '';
   @Select(ClientState.getFullName) client$?: Observable<string>;
 
-
-  fullname: string = '';
+  login: string = '';
+  password: string = '';
   cnx: boolean = false;
   error: string = '';
   produit$: Observable<Produit[]>;
@@ -34,9 +31,7 @@ export class LoginComponent implements OnInit {
     this.AuthService.loginClient(this.login, this.password).subscribe(
       (data) => {
         this.cnx = true;
-        this.store.dispatch(new AddClient(data));
-
-
+        this.store.dispatch(new AddClient(data))
         setTimeout(() => {
           this.router.navigate(['/produits']);
         }, 1000);
@@ -44,9 +39,14 @@ export class LoginComponent implements OnInit {
       (error) => {
         console.log(error);
         this.error = 'Erreur de connexion utilisez login:emma et password:toto';
-
+        setTimeout(() => {
+          this.error = ''
+        }, 1000);
       }
     );
   }
+
+
   ngOnInit() { }
 }
+

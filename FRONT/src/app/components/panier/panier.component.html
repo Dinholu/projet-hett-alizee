@@ -30,7 +30,7 @@
     </table>
   <div class="flex justify-center mb-2 gap-5">
       <button *ngIf="(produitsPanier$ | async)?.length;" class="btn btn-primary basis-[15rem]"  (click)="deleteAll()">Supprimer tous les produits</button>
-      <button *ngIf="(produitsPanier$ | async)?.length;" class="btn btn-success basis-[15rem]" >Passer au paiement</button>
+      <button *ngIf="(produitsPanier$ | async)?.length;" class="btn btn-success basis-[15rem]" (click)="payAll()" >Passer au paiement</button>
     </div>
     <ng-template #panierVide>
       <p>Votre panier est vide.</p>
