@@ -1,9 +1,10 @@
 <div class="top-[9rem] overflow-hidden absolute left-4 right-4 animate-openFromMiddle text-center">
   <div class="w-full text-center right-4 left-4">
-    <div *ngIf="loading" class="text-6xl mt-[5rem] text-white">
+
+    <div class="w-2/3 px-[4rem] m-auto flex flex-col justify-center bg-white bg-opacity-50 backdrop-blur-lg shadow-lg rounded-2xl p-5 ">
+          <div *ngIf="loading" class="text-6xl my-[3rem] text-white">
     <i class="fa-solid fa-gear animate-spin-slow"></i>
     </div>
-    <div class="w-2/3 px-[4rem] m-auto flex flex-col justify-center bg-white bg-opacity-50 backdrop-blur-lg shadow-lg rounded-2xl p-5 ">
       <table class="table" *ngIf="(commande$ | async)?.length && !loading">
       <thead>
         <tr>
