@@ -22,8 +22,9 @@ module.exports = {
           '100%': { transform: 'translateY(0px)' },
         },
         up: {
-          '0%': { transform: 'translateY(50px)', },
-          '100%': { transform: 'translateY(0px)' },
+          '0%': { transform: 'translateY(50px)', opacity: '0'},
+          '50%': { transform: 'translateY(0px)', opacity: '0' },
+          '100%': { transform: 'translateY(0px)', opacity: '1' },
         },
         openFromMiddle: {
           '0%': {

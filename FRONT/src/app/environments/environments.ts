@@ -2,14 +2,15 @@ export const environment = {
   production: false,
   // mock
   // backendProduit: '/assets/mock/produits.json',
+
   // prod
-  //backendLoginClient: 'https://tp06-ivuh.onrender.com/api/utilisateur/login',
+  backendLoginClient: 'https://projet-hett-alizee.onrender.com/api/utilisateur/login',
+  backendCatalogue: 'https://projet-hett-alizee.onrender.com/api/catalogue',
+  backendSignupClient: 'https://projet-hett-alizee.onrender.com/api/utilisateur/signup'
+
   // local
-  backendLoginClient: 'http://localhost:8080/api/utilisateur/login',
-  backenSignupClient: 'http://localhost:8080/api/utilisateur/signup',
   // backendLoginClient: 'http://localhost:8080/api/utilisateur/login',
-  //backendCatalogue: 'https://tp06-ivuh.onrender.com/api/catalogue',
-  // local
-  backendCatalogue: 'http://localhost:8080/api/catalogue',
-  //backendCatalogue: 'http://localhost:8080/api/catalogue',
-};
+  // backenSignupClient: 'http://localhost:8080/api/utilisateur/signup',
+  // backendCatalogue: 'http://localhost:8080/api/catalogue'
+
+}

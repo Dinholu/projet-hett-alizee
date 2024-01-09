@@ -35,7 +35,7 @@ export class AuthService {
       })
     };
 
-    return this.http.post(environment.backenSignupClient, client, httpOptions);
+    return this.http.post(environment.backendSignupClient, client, httpOptions);
   }
   public loginClient(login: string, password: string): Observable<Client> {
     let data: String;
