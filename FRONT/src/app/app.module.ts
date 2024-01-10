@@ -14,7 +14,7 @@ import { PanierState } from './shared/states/panier-state';
 import { ClientState } from './shared/states/client-state';
 import { ApiHttpInterceptor } from './http-interceptor';
 import { CatalogueService } from './services/catalogue.service';
-import { LoginComponent } from './components/Utilisateurs/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { AccueilComponent } from './components/Layout/accueil/accueil.component';
 import { EnregistrerComponent } from './components/Utilisateurs/enregistrer/enregistrer.component';
 import { ReactiveFormsModule } from '@angular/forms';

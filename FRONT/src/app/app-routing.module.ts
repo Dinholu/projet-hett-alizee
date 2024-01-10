@@ -5,7 +5,7 @@ import { Produit } from './shared/models/produit';
 import { EnregistrerComponent } from './components/Utilisateurs/enregistrer/enregistrer.component';
 import { AccueilComponent } from './components/Layout/accueil/accueil.component';
 import { ProduitsComponent } from './components/produits/produits.component';
-import { LoginComponent } from './components/Utilisateurs/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { CommandeComponent } from './components/commande/commande.component';
 
 import { AuthGuard } from './auth.guard';
