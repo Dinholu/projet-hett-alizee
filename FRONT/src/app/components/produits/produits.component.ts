@@ -38,10 +38,10 @@ export class ProduitsComponent implements OnInit {
       }),
       tap({
         next: () => {
-          this.loading = false; // Mettre à jour loading une fois que le chargement est terminé
+          this.loading = false;
         },
         error: () => {
-          this.loading = false; // Gérer le cas d'erreur également
+          this.loading = false;
         }
       }),
       startWith([] as Produit[])

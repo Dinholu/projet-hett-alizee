@@ -20,10 +20,10 @@ export class CommandeService {
   @Select(PanierState.getProduitsPanier) produitsPanier$?: Observable<Panier[]>;
 
   public postCommande(client: Client, panier: Panier[]): Observable<any> {
-    return this.http.post(environment.backendCatalogue + '/pay', { client: client, panier: panier });
+    return this.http.post(environment.backend + '/catalogue/pay', { client: client, panier: panier });
   }
 
   public getCommandes(): Observable<Commande[]> {
-    return this.http.get<Commande[]>(environment.backendCatalogue + '/commandes');
+    return this.http.get<Commande[]>(environment.backend + '/catalogue/commandes');
   }
 }

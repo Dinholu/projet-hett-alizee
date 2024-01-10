@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
 import { Store } from '@ngxs/store';
-import { AddClient } from '../../shared/actions/clients-actions';
+import { AddClient } from '../../../shared/actions/clients-actions';
 import { Router } from '@angular/router';
 import {
   FormGroup, FormBuilder, Validators
 } from '@angular/forms';
-import { Client } from '../../shared/models/client';
+import { Client } from '../../../shared/models/client';
+
 @Component({
   selector: 'app-enregistrer',
   templateUrl: './enregistrer.component.html',
-  styleUrls: ['./enregistrer.component.css']
 })
+
 
 export class EnregistrerComponent implements OnInit {
 
@@ -20,22 +21,24 @@ export class EnregistrerComponent implements OnInit {
   success: string = '';
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private store: Store) {
     this.inscriptionForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      nom: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      prenom: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      adresse: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      codepostal: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(5), Validators.pattern('[0-9]*')]],
-      ville: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
+      email: ['', [Validators.required]],
+      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
+      adresse: ['', [Validators.required]],
+      codepostal: ['', [Validators.required]],
+      ville: ['', [Validators.required]],
       sexe: ['', Validators.required],
-      telephone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')]],
-      login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*')]],
-      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{3,20}$/)]],
+      telephone: ['', [Validators.required]],
+      login: ['', [Validators.required]],
+      password: ['', [Validators.required]],
       confirmPassword: ['', Validators.required]
     });
   }
 
   signup() {
-    if (this.inscriptionForm.valid) {
+    if (this.inscriptionForm.value.password !== this.inscriptionForm.value.confirmPassword) {
+      this.error = 'Les mots de passe ne correspondent pas';
+    } else if (this.inscriptionForm.valid) {
       const client: Client = new Client();
       client.nom = this.inscriptionForm.value.nom;
       client.prenom = this.inscriptionForm.value.prenom;
@@ -50,10 +53,10 @@ export class EnregistrerComponent implements OnInit {
 
       this.authService.signup(client).subscribe(
         (data) => {
-          console.log('Données reçues : ', data);
+          console.log('Inscription reussie : ', data);
           this.error = '';
-          this.success = 'Inscription réussie, vous allez etre redirigé vers notre catalogue dans 3 secondes';
           this.store.dispatch(new AddClient(data));
+          this.success = 'Inscription réussie, vous allez etre redirigé vers notre catalogue dans 3 secondes';
 
           setTimeout(() => {
             this.router.navigate(['/produits']);

@@ -7,8 +7,8 @@ import { Produit } from '../../shared/models/produit';
 import { RemoveAllProduit, RemoveProduit } from '../../shared/actions/produits-actions';
 import { Panier } from '../../shared/models/panier';
 import { Router } from '@angular/router';
-import { CatalogueService } from '../../services/catalogue.service';
 import { Client } from 'src/app/shared/models/client';
+import { CommandeService } from 'src/app/services/commande.service';
 
 @Component({
   selector: 'app-panier',
@@ -16,7 +16,7 @@ import { Client } from 'src/app/shared/models/client';
   styleUrls: ['./panier.component.css']
 })
 export class PanierComponent implements OnInit {
-  constructor(private store: Store, private router: Router, private catalogueService: CatalogueService) { }
+  constructor(private store: Store, private router: Router, private commandeService: CommandeService) { }
 
   message: string = '';
 
@@ -44,7 +44,7 @@ export class PanierComponent implements OnInit {
     this.produitsPanier$?.subscribe((data) => {
       panier = data;
     });
-    this.catalogueService.payAll(client, panier).subscribe(
+    this.commandeService.postCommande(client, panier).subscribe(
       (data) => {
         this.deleteAll();
         this.message = 'Paiement effectué avec succès';

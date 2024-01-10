@@ -8,7 +8,6 @@ import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-commande',
   templateUrl: './commande.component.html',
-  styleUrls: ['./commande.component.css']
 })
 export class CommandeComponent implements OnInit {
   loading = true;

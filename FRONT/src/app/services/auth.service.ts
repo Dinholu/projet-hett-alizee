@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Produit } from '../shared/models/produit';
 import { Client } from '../shared/models/client';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -28,14 +27,12 @@ export class AuthService {
   }
 
   public signup(client: Client): Observable<any> {
-    // form Data
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-
-    return this.http.post(environment.backendSignupClient, client, httpOptions);
+    return this.http.post(environment.backend + '/utilisateur/signup', client, httpOptions);
   }
   public loginClient(login: string, password: string): Observable<Client> {
     let data: String;
@@ -45,7 +42,7 @@ export class AuthService {
       })
     };
     data = 'login=' + login + '&password=' + password;
-    return this.http.post<Client>(environment.backendLoginClient, data, httpOptions);
+    return this.http.post<Client>(environment.backend + '/utilisateur/login', data, httpOptions);
   }
 
   public logout() {

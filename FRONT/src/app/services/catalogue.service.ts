@@ -20,24 +20,19 @@ export class CatalogueService {
   @Select(PanierState.getProduitsPanier) produitsPanier$?: Observable<Panier[]>;
 
   public getProduits(): Observable<Produit[]> {
-    return this.http.get<Produit[]>(environment.backendCatalogue);
+    return this.http.get<Produit[]>(environment.backend + '/catalogue');
   }
 
   getSearchProduits(term: string, categorie: string): Observable<Produit[]> {
     let params = new HttpParams();
     params = params.set('term', term).set('category', categorie);
 
-    const url = `${environment.backendCatalogue}/filtrer`;
+    const url = `${environment.backend}/catalogue/filtrer`;
     return this.http.get<Produit[]>(url, { params: params });
   }
 
   getCategories(): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(environment.backendCatalogue + '/categories');
-  }
-
-  payAll(client: Client, panier: Panier[]): Observable<any> {
-    // console.log(client, panier)
-    return this.http.post(environment.backendCatalogue + '/pay', { client: client, panier: panier });
+    return this.http.get<Categorie[]>(environment.backend + '/catalogue/categories');
   }
 }
 

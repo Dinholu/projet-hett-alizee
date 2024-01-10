@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { PanierState } from '../../shared/states/panier-state';
-import { ClientState } from '../../shared/states/client-state';
-import { AuthService } from '../../services/auth.service';
+import { PanierState } from '../../../shared/states/panier-state';
+import { ClientState } from '../../../shared/states/client-state';
+import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
   providers: [AuthService],
 })
 export class HeaderComponent implements OnInit {
@@ -54,7 +52,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    // refresh page
     window.location.reload();
   }
 }
