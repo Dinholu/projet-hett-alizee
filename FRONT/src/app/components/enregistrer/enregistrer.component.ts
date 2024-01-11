@@ -73,18 +73,6 @@ export class EnregistrerComponent implements OnInit {
     }
   }
 
-  // Envoyer une erreur si un champs est mal rempli ou si les mots de passe ne correspondent pas
-  validateForm() {
-    if (this.inscriptionForm.value.password !== this.inscriptionForm.value.confirmPassword) {
-      this.message.push('Les mots de passe ne correspondent pas');
-    }
-    // regex pour vérifier que l'email est valide
-    if (this.inscriptionForm.value.prenom)
-      if (this.inscriptionForm.value.nom === '') {
-        this.message.push('Le nom est vide');
-      }
-  }
-
   ngOnInit() {
 
   }
