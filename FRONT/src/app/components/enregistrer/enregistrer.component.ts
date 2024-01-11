@@ -1,12 +1,12 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Store } from '@ngxs/store';
-import { AddClient } from '../../../shared/actions/clients-actions';
+import { AddClient } from '../../shared/actions/clients-actions';
 import { Router } from '@angular/router';
 import {
   FormGroup, FormBuilder, Validators
 } from '@angular/forms';
-import { Client } from '../../../shared/models/client';
+import { Client } from '../../shared/models/client';
 
 @Component({
   selector: 'app-enregistrer',
@@ -15,7 +15,7 @@ import { Client } from '../../../shared/models/client';
 
 
 export class EnregistrerComponent implements OnInit {
-
+  message = ['']
   inscriptionForm: FormGroup = new FormGroup({});
   error: string = '';
   success: string = '';
@@ -36,6 +36,7 @@ export class EnregistrerComponent implements OnInit {
   }
 
   signup() {
+    this.error = '';
     if (this.inscriptionForm.value.password !== this.inscriptionForm.value.confirmPassword) {
       this.error = 'Les mots de passe ne correspondent pas';
     } else if (this.inscriptionForm.valid) {
@@ -71,11 +72,17 @@ export class EnregistrerComponent implements OnInit {
       this.error = 'Veuillez remplir correctement tous les champs du formulaire';
     }
   }
-  validateField(field: string) {
-    const control = this.inscriptionForm.get(field);
-    if (control) {
-      control.markAsTouched();
+
+  // Envoyer une erreur si un champs est mal rempli ou si les mots de passe ne correspondent pas
+  validateForm() {
+    if (this.inscriptionForm.value.password !== this.inscriptionForm.value.confirmPassword) {
+      this.message.push('Les mots de passe ne correspondent pas');
     }
+    // regex pour vérifier que l'email est valide
+    if (this.inscriptionForm.value.prenom)
+      if (this.inscriptionForm.value.nom === '') {
+        this.message.push('Le nom est vide');
+      }
   }
 
   ngOnInit() {

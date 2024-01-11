@@ -16,10 +16,12 @@ import { ApiHttpInterceptor } from './http-interceptor';
 import { CatalogueService } from './services/catalogue.service';
 import { LoginComponent } from './components/login/login.component';
 import { AccueilComponent } from './components/Layout/accueil/accueil.component';
-import { EnregistrerComponent } from './components/Utilisateurs/enregistrer/enregistrer.component';
+import { EnregistrerComponent } from './components/enregistrer/enregistrer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommandeComponent } from './components/commande/commande.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,12 +29,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FooterComponent,
     PanierComponent,
     ProduitsComponent,
-
-    // FilterPipe,
     LoginComponent,
     AccueilComponent,
     EnregistrerComponent,
-    CommandeComponent
+    CommandeComponent,
 
   ],
   imports: [
@@ -42,7 +42,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatInputModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },

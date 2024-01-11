@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PanierComponent } from './components/panier/panier.component';
 import { Produit } from './shared/models/produit';
-import { EnregistrerComponent } from './components/Utilisateurs/enregistrer/enregistrer.component';
+import { EnregistrerComponent } from './components/enregistrer/enregistrer.component';
 import { AccueilComponent } from './components/Layout/accueil/accueil.component';
 import { ProduitsComponent } from './components/produits/produits.component';
 import { LoginComponent } from './components/login/login.component';
